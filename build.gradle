@@ -1,9 +1,23 @@
 plugins {
-    id 'java'
+    id 'java-library'
+    id 'maven-publish'
 }
 
 group 'org.v0ncent'
 version '1.0-SNAPSHOT'
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/v0ncent/PackageTestingWithGradle"
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("MAVEN")
+            }
+        }
+    }
+}
 
 repositories {
     mavenCentral()
